@@ -25,7 +25,7 @@ model Org {
   state        String
   city         String
   neighborhood String
-  streer       String
+  street       String
 
   latitude  Decimal
   longitude Decimal
