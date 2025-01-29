@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
-import { prisma } from "../../../lib/prisma"
+import { createOrgUseCase } from "../../../use-cases/create-org.use-case"
 
 export async function createOrgController(
   request: FastifyRequest,
@@ -11,7 +11,7 @@ export async function createOrgController(
     author_name: z.string(),
     email: z.string(),
     whatsapp: z.string(),
-    password: z.string(),
+    password: z.string().min(6),
     cep: z.string(),
     state: z.string(),
     city: z.string(),
@@ -25,33 +25,35 @@ export async function createOrgController(
     name,
     author_name,
     email,
+    whatsapp,
+    password,
     cep,
+    state,
     city,
+    neighborhood,
+    street,
     latitude,
     longitude,
-    neighborhood,
-    password,
-    state,
-    street,
-    whatsapp,
   } = bodySchema.parse(request.body)
 
-  await prisma.org.create({
-    data: {
+  try {
+    await createOrgUseCase({
+      name,
       author_name,
-      cep,
-      city,
       email,
+      whatsapp,
+      password,
+      cep,
+      state,
+      city,
+      neighborhood,
+      street,
       latitude,
       longitude,
-      name,
-      neighborhood,
-      password,
-      state,
-      street,
-      whatsapp,
-    },
-  })
+    })
+  } catch (error) {
+    return reply.status(409).send()
+  }
 
   return reply.status(201).send()
 }
