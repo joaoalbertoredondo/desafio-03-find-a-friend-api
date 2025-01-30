@@ -1,5 +1,7 @@
 import { hash } from "bcryptjs"
 import { prisma } from "../lib/prisma"
+import { OrgsRepository } from "../repositories/orgs.repository"
+import { OrgAlreadyExistsError } from "./errors/org-already-exists.error"
 
 interface CreateOrgUseCaseRequest {
   name: string
@@ -18,34 +20,32 @@ interface CreateOrgUseCaseRequest {
 
 interface CreateOrgUseCaseResponse {}
 
-export async function createOrgUseCase({
-  name,
-  author_name,
-  email,
-  whatsapp,
-  password,
-  cep,
-  state,
-  city,
-  neighborhood,
-  street,
-  latitude,
-  longitude,
-}: CreateOrgUseCaseRequest) {
-  const password_hash = await hash(password, 6)
+export class CreateOrgUseCase {
+  constructor(private orgsRepository: OrgsRepository) {}
 
-  const orgWithSameEmail = await prisma.org.findUnique({
-    where: {
-      email,
-    },
-  })
+  async execute({
+    name,
+    author_name,
+    email,
+    whatsapp,
+    password,
+    cep,
+    state,
+    city,
+    neighborhood,
+    street,
+    latitude,
+    longitude,
+  }: CreateOrgUseCaseRequest) {
+    const password_hash = await hash(password, 6)
 
-  if (orgWithSameEmail) {
-    throw new Error("E-mail already exists.")
-  }
+    const orgWithSameEmail = await this.orgsRepository.findByEmail(email)
 
-  await prisma.org.create({
-    data: {
+    if (orgWithSameEmail) {
+      throw new OrgAlreadyExistsError()
+    }
+
+    await this.orgsRepository.create({
       name,
       author_name,
       email,
@@ -58,6 +58,6 @@ export async function createOrgUseCase({
       street,
       latitude,
       longitude,
-    },
-  })
+    })
+  }
 }
