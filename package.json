@@ -1,7 +1,7 @@
 {
   "name": "desafio-03-find-a-friend-api",
   "version": "1.0.0",
-  "description": "- [] Deve ser possível cadastrar um pet\r - [] Deve ser possível listar todos os pets disponíveis para adoção em uma cidade\r - [] Deve ser possível filtrar pets por suas características\r - [] Deve ser possível visualizar detalhes de um pet para adoção\r - [] Deve ser possível se cadastrar como uma ORG\r - [] Deve ser possível realizar login como uma ORG",
+  "description": "Pet adopting app",
   "type": "module",
   "main": "index.js",
   "scripts": {

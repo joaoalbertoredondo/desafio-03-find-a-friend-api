@@ -1,15 +1,20 @@
-import { describe, expect, it } from "vitest"
+import { beforeEach, describe, expect, it } from "vitest"
 import { CreateOrgUseCase } from "./create-org.use-case"
 import { compare } from "bcryptjs"
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
 import { OrgAlreadyExistsError } from "./errors/org-already-exists.error"
 
-describe("Create Org Use Case", () => {
-  it("should be able to register", async () => {
-    const orgsRepository = new InMemoryOrgsRepository()
-    const createOrgUseCase = new CreateOrgUseCase(orgsRepository)
+let orgsRepository: InMemoryOrgsRepository
+let sut: CreateOrgUseCase
 
-    const { org } = await createOrgUseCase.execute({
+describe("Create Org Use Case", () => {
+  beforeEach(() => {
+    orgsRepository = new InMemoryOrgsRepository()
+    sut = new CreateOrgUseCase(orgsRepository)
+  })
+
+  it("should be able to register", async () => {
+    const { org } = await sut.execute({
       name: "Random Org",
       author_name: "John Doe",
       email: "random.organization@example.com",
@@ -28,10 +33,7 @@ describe("Create Org Use Case", () => {
   })
 
   it("should hash org password upon registration", async () => {
-    const orgsRepository = new InMemoryOrgsRepository()
-    const createOrgUseCase = new CreateOrgUseCase(orgsRepository)
-
-    const { org } = await createOrgUseCase.execute({
+    const { org } = await sut.execute({
       name: "Random Org",
       author_name: "John Doe",
       email: "random.organization@example.com",
@@ -52,12 +54,9 @@ describe("Create Org Use Case", () => {
   })
 
   it("should not be able to register with same email twice", async () => {
-    const orgsRepository = new InMemoryOrgsRepository()
-    const createOrgUseCase = new CreateOrgUseCase(orgsRepository)
-
     const email = "random.organization@example.com"
 
-    await createOrgUseCase.execute({
+    await sut.execute({
       name: "Random Org",
       author_name: "John Doe",
       email,
@@ -73,7 +72,7 @@ describe("Create Org Use Case", () => {
     })
 
     await expect(() =>
-      createOrgUseCase.execute({
+      sut.execute({
         name: "Random Org",
         author_name: "John Doe",
         email,
