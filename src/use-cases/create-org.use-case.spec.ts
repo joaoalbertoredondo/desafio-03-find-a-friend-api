@@ -13,7 +13,7 @@ describe("Create Org Use Case", () => {
     sut = new CreateOrgUseCase(orgsRepository)
   })
 
-  it("should be able to register", async () => {
+  it("should be able to create an org", async () => {
     const { org } = await sut.execute({
       name: "Random Org",
       author_name: "John Doe",
