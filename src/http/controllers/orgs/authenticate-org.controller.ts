@@ -17,10 +17,21 @@ export async function authenticateOrgController(
   try {
     const authenticateOrgUseCase = makeAuthenticateOrgUseCase()
 
-    await authenticateOrgUseCase.execute({
+    const { org } = await authenticateOrgUseCase.execute({
       email,
       password,
     })
+
+    const token = await reply.jwtSign(
+      {},
+      {
+        sign: {
+          sub: org.id,
+        },
+      }
+    )
+
+    return reply.status(200).send({ token })
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
       return reply.status(400).send({ message: error.message })
@@ -28,6 +39,4 @@ export async function authenticateOrgController(
 
     throw error
   }
-
-  return reply.status(200).send()
 }
