@@ -30,5 +30,3 @@ export async function getPetController(
     return reply.status(500).send({ message: "Internal server error" })
   }
 }
-
-// postman parando no 404

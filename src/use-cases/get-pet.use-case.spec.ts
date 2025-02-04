@@ -2,13 +2,16 @@ import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets.
 import { beforeEach, describe, expect, it } from "vitest"
 import { GetPetUseCase } from "./get-pet.use-case"
 import { PetNotFoundError } from "./errors/pet-not-found.error"
+import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
 
+let orgsRepository: InMemoryOrgsRepository
 let petsRepository: InMemoryPetsRepository
 let sut: GetPetUseCase
 
 describe("Get Pet Use Case", () => {
   beforeEach(() => {
-    petsRepository = new InMemoryPetsRepository()
+    orgsRepository = new InMemoryOrgsRepository()
+    petsRepository = new InMemoryPetsRepository(orgsRepository)
     sut = new GetPetUseCase(petsRepository)
   })
 
@@ -32,7 +35,7 @@ describe("Get Pet Use Case", () => {
   })
 
   it("should not be able to get a non-existing pet", async () => {
-    await expect(() => 
+    await expect(() =>
       sut.execute({
         id: "non-existing-id",
       })
