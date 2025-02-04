@@ -27,8 +27,8 @@ describe("Search Pets Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await petsRepository.create({
@@ -62,8 +62,8 @@ describe("Search Pets Use Case", () => {
       city: "Random City",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await petsRepository.create({
@@ -96,8 +96,8 @@ describe("Search Pets Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await petsRepository.create({
@@ -137,8 +137,8 @@ describe("Search Pets Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await petsRepository.create({
@@ -178,8 +178,8 @@ describe("Search Pets Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await petsRepository.create({
@@ -219,8 +219,8 @@ describe("Search Pets Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await petsRepository.create({

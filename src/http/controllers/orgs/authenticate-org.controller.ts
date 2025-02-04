@@ -1,7 +1,8 @@
-import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials.error"
-import { makeAuthenticateOrgUseCase } from "@/use-cases/factories/make-authenticate-org.use-case"
 import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
+
+import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials.error"
+import { makeAuthenticateOrgUseCase } from "@/use-cases/factories/make-authenticate-org.use-case"
 
 export async function authenticateOrgController(
   request: FastifyRequest,

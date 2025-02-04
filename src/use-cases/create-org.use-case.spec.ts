@@ -25,8 +25,8 @@ describe("Create Org Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     expect(org.id).toEqual(expect.any(String))
@@ -44,8 +44,8 @@ describe("Create Org Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     const isPasswordCorrectlyHashed = await compare("123456", org.password_hash)
@@ -67,8 +67,8 @@ describe("Create Org Use Case", () => {
       city: "Random Town",
       neighborhood: "Any Neighborhood",
       street: "Any Street",
-      latitude: 233111552,
-      longitude: 459964416,
+      latitude: -233111552,
+      longitude: -459964416,
     })
 
     await expect(() =>
@@ -83,8 +83,8 @@ describe("Create Org Use Case", () => {
         city: "Random Town",
         neighborhood: "Any Neighborhood",
         street: "Any Street",
-        latitude: 233111552,
-        longitude: 459964416,
+        latitude: -233111552,
+        longitude: -459964416,
       })
     ).rejects.toBeInstanceOf(OrgAlreadyExistsError)
   })
