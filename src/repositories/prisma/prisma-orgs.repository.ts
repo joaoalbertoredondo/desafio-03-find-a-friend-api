@@ -1,5 +1,6 @@
-import { prisma } from "../../lib/prisma"
 import { Org, Prisma } from "@prisma/client"
+
+import { prisma } from "../../lib/prisma"
 import { FindManyNearbyParams, OrgsRepository } from "../orgs.repository"
 
 export class PrismaOrgsRepository implements OrgsRepository {

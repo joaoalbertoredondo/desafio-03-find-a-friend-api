@@ -1,7 +1,8 @@
-import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
 import { beforeEach, describe, expect, it } from "vitest"
-import { FetchNearbyOrgsUseCase } from "./fetch-nearby-orgs.use-case"
 import { hash } from "bcryptjs"
+
+import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
+import { FetchNearbyOrgsUseCase } from "./fetch-nearby-orgs.use-case"
 
 let orgsRepository: InMemoryOrgsRepository
 let sut: FetchNearbyOrgsUseCase

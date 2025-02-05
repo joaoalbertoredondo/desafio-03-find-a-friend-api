@@ -1,6 +1,7 @@
 import request from "supertest"
-import { app } from "@/app"
 import { afterAll, beforeAll, describe, expect, it } from "vitest"
+
+import { app } from "@/app"
 import { createAndAuthenticateOrg } from "@/utils/test/create-and-authenticate-org"
 
 describe("Get Pet Controller (e2e)", () => {

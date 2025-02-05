@@ -1,5 +1,6 @@
-import { OrgsRepository } from "@/repositories/orgs.repository"
 import { Org } from "@prisma/client"
+
+import { OrgsRepository } from "@/repositories/orgs.repository"
 
 interface FetchNearbyOrgsUseCaseRequest {
   userLatitude: number

@@ -1,9 +1,10 @@
 import fastify from "fastify"
 import { ZodError } from "zod"
+import fastifyJwt from "@fastify/jwt"
+
 import { env } from "./env"
 import { orgsRoutes } from "./http/controllers/orgs/orgs.routes"
 import { petsRoutes } from "./http/controllers/pets/pets.routes"
-import fastifyJwt from "@fastify/jwt"
 
 export const app = fastify()
 

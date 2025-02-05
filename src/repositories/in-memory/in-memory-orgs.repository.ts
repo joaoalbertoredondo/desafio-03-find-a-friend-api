@@ -1,6 +1,7 @@
 import { Org, Prisma } from "@prisma/client"
-import { FindManyNearbyParams, OrgsRepository } from "../orgs.repository"
 import { Decimal } from "@prisma/client/runtime/library"
+
+import { FindManyNearbyParams, OrgsRepository } from "../orgs.repository"
 import { getDistanceBetweenCoordinates } from "@/utils/get-distance-between-coordinates"
 
 export class InMemoryOrgsRepository implements OrgsRepository {

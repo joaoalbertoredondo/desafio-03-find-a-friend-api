@@ -1,8 +1,9 @@
-import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets.repository"
 import { beforeEach, describe, expect, it } from "vitest"
+
+import { InMemoryPetsRepository } from "@/repositories/in-memory/in-memory-pets.repository"
+import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
 import { GetPetUseCase } from "./get-pet.use-case"
 import { PetNotFoundError } from "./errors/pet-not-found.error"
-import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
 
 let orgsRepository: InMemoryOrgsRepository
 let petsRepository: InMemoryPetsRepository

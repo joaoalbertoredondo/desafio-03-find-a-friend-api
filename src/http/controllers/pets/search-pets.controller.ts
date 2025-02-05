@@ -1,6 +1,7 @@
-import { makeSearchPetsUseCase } from "@/use-cases/factories/make-search-pets.use-case"
-import { FastifyReply, FastifyRequest } from "fastify"
 import { z } from "zod"
+import { FastifyReply, FastifyRequest } from "fastify"
+
+import { makeSearchPetsUseCase } from "@/use-cases/factories/make-search-pets.use-case"
 
 const searchPetsQuerySchema = z.object({
   city: z.string().min(1),

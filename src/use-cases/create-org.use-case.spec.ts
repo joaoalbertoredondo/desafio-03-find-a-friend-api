@@ -1,6 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest"
-import { CreateOrgUseCase } from "./create-org.use-case"
 import { compare } from "bcryptjs"
+
+import { CreateOrgUseCase } from "./create-org.use-case"
 import { InMemoryOrgsRepository } from "@/repositories/in-memory/in-memory-orgs.repository"
 import { OrgAlreadyExistsError } from "./errors/org-already-exists.error"
 
