@@ -4,20 +4,20 @@ import { z } from "zod"
 import { InvalidCredentialsError } from "@/use-cases/errors/invalid-credentials.error"
 import { makeAuthenticateOrgUseCase } from "@/use-cases/factories/make-authenticate-org.use-case"
 
+const authenticateOrgBodySchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+})
+
 export async function authenticateOrgController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  const authenticateOrgBodySchema = z.object({
-    email: z.string().email(),
-    password: z.string().min(6),
-  })
-
   const { email, password } = authenticateOrgBodySchema.parse(request.body)
 
-  try {
-    const authenticateOrgUseCase = makeAuthenticateOrgUseCase()
+  const authenticateOrgUseCase = makeAuthenticateOrgUseCase()
 
+  try {
     const { org } = await authenticateOrgUseCase.execute({
       email,
       password,
